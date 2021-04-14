@@ -1,8 +1,10 @@
 class ReviewsController < ApplicationController
 
     def show
-        byebug
         @review = Review.find(params[:id])
     end
 
+    def index
+        @reviews = Review.all
+    end
 end
