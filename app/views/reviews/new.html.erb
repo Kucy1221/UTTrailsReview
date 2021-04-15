@@ -1,0 +1,29 @@
+<h1>Submit a new review!</h1>
+
+<% if @review.errors.any? %>
+    <h2> The following errors prevented the review from being saved: </h2>
+    <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+            <li> <%= msg %> </li>
+        <% end %>
+    </ul>
+<% end %>
+<%= form_with scope: :review, url: reviews_path, local: true do |f| %>
+
+<p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+</p>
+
+<p>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+</p>
+
+<p>
+    <%= f.submit %>
+</p>
+
+
+
+<% end %>
