@@ -1,0 +1,72 @@
+@import 'bootstrap/dist/css//bootstrap';
+
+.navbar {
+  background-color: #FDF6EA !important;
+  background-color: black !important;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+// #home-container {
+//   margin-top: 25px;
+// }
+
+#jumbotron {
+  background-image: asset-url('Utah_Arch.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+.text-background{
+  background-color: rgba(255,255,255,.5);
+  margins: 0,0;
+  float: right;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+  background-color: lightgrey;
+}
+#sticky-footer {
+  flex-shrink: none;
+} 
+
+.btn-primary{
+  background-color: #ff9152;
+  color: white;
+  border-color: #ff9152;
+}
+
+.btn-primary:hover{
+  background-color: #ffa374;
+  border-color: #ffa374;
+}
+
+.btn-outline-success{
+  color: #ff9152;
+  border-color: #ff9152;
+}
+
+.btn-outline-success:hover{
+  background-color: #ff9152;
+  color: white;
+  border-color: #ff9152;
+}

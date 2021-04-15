@@ -2,3 +2,6 @@
 
 <p><strong>Title: </strong><%= @review.title %></p>
 <p><strong> Body: </strong><%= @review.body %></p>
+
+<h2><%= link_to 'Delete', review_path(@review.id), method: :delete, data: { confirm: "Are you sure?" } %></h2>
+<h2><%= link_to 'Return to Reviews', reviews_path %></h2>
