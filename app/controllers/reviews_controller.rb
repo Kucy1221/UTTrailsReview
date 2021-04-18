@@ -15,6 +15,7 @@ class ReviewsController < ApplicationController
     
     def create
         @review = Review.new(review_params())
+        @review.user = User.first()
         if @review.save()
             flash[:notice] = "Review Posted Successfully."
             redirect_to review_path(@review)
