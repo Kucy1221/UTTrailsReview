@@ -11,7 +11,7 @@
                             <%= link_to "Go to Review", review_path(review.id), class: "btn btn-primary" %>
                           </div>
                           <div class="card-footer text-muted">
-                              <small> Created <%= time_ago_in_words(review.created_at) %> ago</small>
+                              <small> Created <%= time_ago_in_words(review.created_at) %> ago by <%= review.user.username %></small>
                           </div>
                         </div>
                     </div>

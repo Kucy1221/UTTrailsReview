@@ -6,15 +6,15 @@
             <div class="col-8">
                 <div class="card shadow" style="width: 100%;">
                     <div class="card-header text-muted">
-                        <small> Created <%= time_ago_in_words(@review.created_at) %> ago</small>
+                        <small> Created <%= time_ago_in_words(@review.created_at) %> ago by <%= @review.user.username %></small>
                     </div>
                     <div class="card-body">
                         <p class="card-text"><%= simple_format(@review.body) %></p>
                      </div>
                 </div>
-                <div class = "container row justify-content-left">
-                    <%= link_to 'Return to Reviews', reviews_path, class: "btn btn-primary" %>
-                    <%= link_to "Delete", review_path(@review), class:"btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+                <div class = "container row p-3 justify-content-left">
+                    <%= link_to 'Return to Reviews', reviews_path, class: "m-3 btn btn-primary" %>
+                    <%= link_to "Delete", review_path(@review), class:"m-3 btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
                 </div>
             </div>
         </div>
