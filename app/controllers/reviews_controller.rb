@@ -38,3 +38,13 @@ class ReviewsController < ApplicationController
         params.require(:review).permit(:title, :body)
     end
 end
+
+  private
+
+  def set_review
+    @review = Review.find(params[:id])
+  end
+
+  def review_params
+    params.require(:review).permit(:title, :body)
+  end
