@@ -1,0 +1,10 @@
+  <% if @review.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"> The following errors prevented the review from being posted: </h4>
+        <ul>
+          <% @review.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+    </div>
+  <% end %>

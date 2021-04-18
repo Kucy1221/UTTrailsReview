@@ -1,4 +1,5 @@
     <% flash.each do |name, msg| %>
-    <%= msg %>
+            <div class="alert alert-success fade show" role="alert">
+                <%= msg %>
+            </div>
     <% end %>
-    <%= yield %>
