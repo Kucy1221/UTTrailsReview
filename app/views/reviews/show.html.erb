@@ -1,7 +1,23 @@
-<h1>showing review details</h1>
+<h1 class ="text-center"><%= @review.title %></h1>
 
-<p><strong>Title: </strong><%= @review.title %></p>
-<p><strong> Body: </strong><%= @review.body %></p>
+<div id="page-content">
+    <div class="container">
+        <div class="row justify-content-md-center mt-4">
+            <div class="col-8">
+                <div class="card shadow" style="width: 100%;">
+                    <div class="card-header text-muted">
+                        <small> Created <%= time_ago_in_words(@review.created_at) %> ago</small>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><%= simple_format(@review.body) %></p>
+                     </div>
+                </div>
+                <div class = "container row justify-content-left">
+                    <%= link_to 'Return to Reviews', reviews_path, class: "btn btn-primary" %>
+                    <%= link_to "Delete", review_path(@review), class:"btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h2><%= link_to 'Delete', review_path(@review.id), method: :delete, data: { confirm: "Are you sure?" } %></h2>
-<h2><%= link_to 'Return to Reviews', reviews_path %></h2>

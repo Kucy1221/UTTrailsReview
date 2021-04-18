@@ -59,6 +59,14 @@ body {
   border-color: #ff9152;
 }
 
+.btn-primary:active{
+  background-color: lightgreen !important;
+}
+
+.btn-primary:focus{
+  background-color: lightgreen !important;
+}
+
 .btn-primary:hover{
   background-color: #ffa374;
   border-color: #ffa374;
@@ -73,4 +81,8 @@ body {
   background-color: #ff9152;
   color: white;
   border-color: #ff9152;
+}
+
+.btn{
+  color: white !important;
 }
