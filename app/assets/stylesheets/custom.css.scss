@@ -1,5 +1,9 @@
 @import 'bootstrap/dist/css/bootstrap';
 
+#wholePage{
+  margin: 0 0;
+}
+
 .navbar {
   background-color: #FDF6EA !important;
   background-color: black !important;
@@ -30,7 +34,7 @@
   height: 100%;
 }
 
-.text-background{
+#signup{
   background-color: rgba(255,255,255,.5);
   margins: 0,0;
   float: right;
