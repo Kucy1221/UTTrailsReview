@@ -1,2 +1,8 @@
 <h1 class="text-center"> <%= @user.username %>'s profile </h1>
 
+<%= gravatar_for @user, size:200%>
+<div class="container text-center">
+    <a class="text-center" href= "https://en.gravatar.com/site/signup/"> Change profile image with Gravatar.</a>
+</div>
+<h3 class="m-4 text-center"> <%= @user.username %>'s reviews </h3>
+<%= render 'reviews/review', obj: @user.reviews %>
