@@ -14,6 +14,9 @@ class UsersController < ApplicationController
     end
     
     def edit
+        if !logged_in? || @user.id != current_user.id
+            redirect_to user_path(@user.id)
+        end
     end
         
     def update
