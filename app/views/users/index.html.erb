@@ -1,2 +1,11 @@
-<h1 class="text-center mt-4">Trail Reviewers</h1>
-<%= render 'user', obj: @users %>
+    <h1 class="text-center mt-4">Trail Reviewers</h1>
+
+    <div class="apple_pagination">
+        <%= will_paginate @users, :container => false %>
+    </div>
+    
+    <%= render 'user', obj: @users %>
+    
+    <div class="apple_pagination mb-5 mt-4">
+        <%= will_paginate @users, :container => false %>
+    </div>    

@@ -10,4 +10,14 @@
 </div>
 
 <h3 class="m-4 text-center"> <%= @user.username %>'s reviews </h3>
-<%= render 'reviews/review', obj: @user.reviews %>
+
+<div class="apple_pagination">
+    <%= will_paginate @reviews, :container => false %>
+</div>
+
+<%= render 'reviews/review', obj: @reviews %>
+
+<div class="apple_pagination mb-5 mt-4">
+    <%= will_paginate @reviews, :container => false %>
+</div>    
+

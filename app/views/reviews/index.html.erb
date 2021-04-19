@@ -1,4 +1,13 @@
 <div id="page-content">
-    <h1 class="text-center mt-4">Reviews</h1>
+    <h1 class="text-center mb-4 mt-4">Reviews</h1>
+    
+    <div class="apple_pagination">
+        <%= will_paginate @reviews, :container => false %>
+    </div>
+    
     <%= render 'review', obj: @reviews %>
+    
+    <div class="apple_pagination mb-5 mt-4">
+        <%= will_paginate @reviews, :container => false %>
+    </div>    
 </div>
