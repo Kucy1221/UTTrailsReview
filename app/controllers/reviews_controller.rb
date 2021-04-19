@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
     before_action :set_review, only: [:show, :destroy]
-
+    before_action :require_user, except: [:show, :index]
+    before_action :require_same_user, only: [:destroy]
 
     def show
     end
@@ -48,4 +49,11 @@ end
 
   def review_params
     params.require(:review).permit(:title, :body)
+  end
+
+  def require_same_user
+      if current_user.id != @review.user.id
+          flash[:alert] = "You can only delete your own reviews."
+          redirect_to @review
+      end
   end
