@@ -5,8 +5,9 @@
         <div class="row justify-content-md-center mt-4">
             <div class="col-8">
                 <div class="card shadow" style="width: 100%;">
-                    <div class="card-header text-muted">
+                    <div class="card-header text-muted text-center">
                         <small> Created <%= time_ago_in_words(@review.created_at) %> ago by <%= @review.user.username %></small>
+                        <%= link_to gravatar_for(@review.user, size: 40), user_path(@review.user.id)%>
                     </div>
                     <div class="card-body">
                         <p class="card-text"><%= simple_format(@review.body) %></p>

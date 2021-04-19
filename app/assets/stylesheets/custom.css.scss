@@ -53,6 +53,10 @@ body {
   flex-shrink: none;
 } 
 
+.btn{
+  color: white !important;
+}
+
 .btn-primary{
   background-color: #ff9152;
   color: white !important;
@@ -72,17 +76,13 @@ body {
   border-color: #ffa374;
 }
 
-.btn-outline-success{
-  color: #ff9152;
+.btn-outline-primary{
+  color: #ff9152 !important;
   border-color: #ff9152;
 }
 
-.btn-outline-success:hover{
+.btn-outline-primary:hover{
   background-color: #ff9152;
-  color: white;
-  border-color: #ff9152;
-}
-
-.btn{
   color: white !important;
+  border-color: #ff9152;
 }
