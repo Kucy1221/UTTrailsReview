@@ -52,7 +52,7 @@ end
   end
 
   def require_same_user
-      if current_user.id != @review.user.id
+      if current_user.id != @review.user.id && !current_user.admin?
           flash[:alert] = "You can only delete your own reviews."
           redirect_to @review
       end

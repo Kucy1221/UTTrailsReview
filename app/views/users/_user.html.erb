@@ -13,6 +13,10 @@
                             <% if logged_in? && user.id == current_user.id %>
                                 <%= link_to "Edit User", edit_user_path(user.id), class: "btn btn-primary" %>
                             <% end %>
+                            <% if logged_in? && current_user.admin? %>
+                                <%= link_to "Delete user", user_path(user.id), class: "btn btn-danger", method: :delete, 
+                                data: {confirm: "Are you sure you want to delete the account and all associated data (all reviews) ?"} %>
+                            <% end %>                            
                             </div>
                             <div class="card-footer text-muted">
                               <small> Joined <%= time_ago_in_words(user.created_at) %> ago.</small>
