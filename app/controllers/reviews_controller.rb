@@ -37,7 +37,7 @@ class ReviewsController < ApplicationController
     end
     
     def review_params
-        params.require(:review).permit(:title, :body)
+        params.require(:review).permit(:title, :body, :rating)
     end
 end
 
@@ -48,7 +48,7 @@ end
   end
 
   def review_params
-    params.require(:review).permit(:title, :body)
+    params.require(:review).permit(:title, :body, :rating)
   end
 
   def require_same_user

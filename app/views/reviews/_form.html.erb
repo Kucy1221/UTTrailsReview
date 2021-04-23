@@ -16,17 +16,29 @@
           </div>
         </div>
         <div class="mb-3 row">
-          <%= f.label :rating, class: "col-2 col-form-label text-light" %>
-          <%= f.radio_button :rating, 1%>
-          <%= f.label :rating_1, 1%>
-          <%= f.radio_button :rating, 2%>
-          <%= f.label :rating_2, 2%>
-          <%= f.radio_button :rating, 3%>
-          <%= f.label :rating_3, 3%>
-          <%= f.radio_button :rating, 4%>
-          <%= f.label :rating_4, 4%>
-          <%= f.radio_button :rating, 5%>
-          <%= f.label :rating_5, 5%>
+          <%= f.label :rating, "Overall Health of Trail:", class: "col-3 col-form-label text-light p-3" %>          
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <div class = "btn btn-danger">
+              <%= f.label :rating_1, "Terrible!", class: "text-white p-2"%>
+              <%= f.radio_button :rating, 1, class: "form-control p-2"%>
+            </div>
+            <div class = "btn btn-secondary">
+              <%= f.radio_button :rating, 2, class: "form-control p-2"%>
+              <%= f.label :rating_2, "Poor.", class: "text-white p-2"%>
+            </div>
+            <div class = "btn btn-warning">
+              <%= f.radio_button :rating, 3, class: "form-control p-2"%>
+              <%= f.label :rating_3, "Okay.", class: "text-white p-2"%>
+            </div>
+            <div class = "btn btn-success">
+              <%= f.radio_button :rating, 4, class: "form-control p-2"%>
+              <%= f.label :rating_4, "Good.", class: "text-white p-2"%>
+            </div>
+            <div class = "btn btn-info">
+              <%= f.radio_button :rating, 5, class: "form-control p-2"%>
+              <%= f.label :rating_5, "Great!", class: " text-white p-2"%>
+            </div>
+          </div>
         </div>        
         <div class="row mb-3 justify-content-center">
           <%= f.submit class: "btn btn-outline-light btn-lg col-3" %>
