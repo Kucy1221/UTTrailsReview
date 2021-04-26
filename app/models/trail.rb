@@ -3,15 +3,22 @@ require 'json'
 class Trail < ApplicationRecord
     
     
-    def self.new_lookup(trailName)
+    def self.new_lookup(category, keywords)
+        
+        valid_categories = ['primaryname', 'designateduses', 'recreationarea']
+        
+        if not (valid_categories.include? category)
+            raise "Invalid search category"
+        end
+        
         params = {}
         @api_key = Rails.application.credentials.agrc[:server_agrc_key]
         
         #AGRC stores primaryname as spaced capitalized words EG 'Devils Castle Trail'
-        params['predicate'] = "primaryname LIKE '%#{trailName.downcase().titleize()}%'"
+        params['predicate'] = "#{category} LIKE '%#{keywords.downcase().titleize()}%'"
         params['apiKey'] = @api_key
         
-        api_url = "https://api.mapserv.utah.gov/api/v1/search/recreation.trails_and_pathways/primaryname, id, hikedifficulty, designateduses, recreationarea"
+        api_url = "https://api.mapserv.utah.gov/api/v1/search/recreation.trails_and_pathways/primaryname, unique_id, hikedifficulty, bikedifficulty, designateduses, recreationarea"
     
         uri = URI(URI.encode(api_url))
         uri.query = URI.encode_www_form(params)
@@ -27,8 +34,9 @@ class Trail < ApplicationRecord
         obj['result'].each() do |trail|
             newTrail = {
               :primaryname => trail['attributes']['primaryname'],
-              :id => trail['attributes']['id'],
+              :id => trail['attributes']['unique_id'],
               :hikedifficulty => trail['attributes']['hikedifficulty'],
+              :bikedifficulty => trail['attributes']['bikedifficulty'],
               :designateduses => trail['attributes']['designateduses'],
               :recreationarea => trail['attributes']['recreationarea']
             }
@@ -36,5 +44,6 @@ class Trail < ApplicationRecord
         end
         return trails
     end
+    
     class AGRCGeocoderException < Exception; end
 end
