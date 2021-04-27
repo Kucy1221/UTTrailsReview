@@ -1,0 +1,40 @@
+<div class='m-3'>
+    <h1>Trails Search</h1>
+</div>
+
+
+<div class='m-3'>
+    <h3>Search for trails by name:</h3>
+    <%= form_tag find_trails_path, method: :get do %>
+        <div class = "form-group row">
+            <div class="col-sm-9 pr-0">
+                <%= text_field_tag :primaryname, params[:primaryname], placeholder: "name of trail", autofocus: true, class: "form-control form-control-lg"%>
+            </div>
+        </div>
+
+
+        <h3>Search for trails by area:</h3>
+        <div class = "form-group row">
+            <div class="col-sm-9 pr-0">
+                <%= text_field_tag :recreationarea, params[:recreationarea], placeholder: "recreation area ex. 'Zion'", autofocus: true, class: "form-control form-control-lg"%>
+            </div>
+        </div>
+
+
+        <h3>Search for trails by type:</h3>
+        <div class = "form-group row">
+            <div class="col-sm-9 pr-0">
+                <%= text_field_tag :designateduses, params[:designateduses], placeholder: "Trail type ex. 'Bike'", autofocus: true, class: "form-control form-control-lg"%>
+            </div>
+            <!-- turn this into a radio button or checkbox field -->
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-9 pr-0">
+                <%= button_tag type: :submit, class: "btn btn-primary" do%>
+                <%= 'Search!' %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>

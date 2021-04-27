@@ -1,0 +1,29 @@
+<% if @trails.length() > 0 %>
+    <% @trails.each do |trail|%>
+        <div class="card card-body m-3">
+            <% if trail[:primaryname]%>
+                <strong>Trail Name: </strong> <%= trail[:primaryname]%>
+            <% end %>
+
+            <% if trail[:hikedifficulty]%>
+                <strong>Hike Difficulty: </strong> <%= trail[:hikedifficulty]%>
+            <% end %>
+            <% if trail[:bikedifficulty]%>
+                <strong>Bike Difficulty: </strong> <%= trail[:bikedifficulty]%>
+            <% end %>
+            <% if trail[:designateduses]%>
+                <strong>Type: </strong> <%= trail[:designateduses]%>
+            <% end %>
+            <% if trail[:recreationarea]%>
+                <strong>Location: </strong> <%= trail[:recreationarea]%>
+            <% end %>
+            <div class="mt-3 mb-0 row">
+                <div class = "col-10">
+                    <%= link_to "Review this trail.", new_review_path, class: "btn btn-primary"%>
+                </div>
+            </div>
+        </div>
+    <% end %>
+<% else %>
+    <h2> No Trails found with specified parameters </h2>
+<% end %>

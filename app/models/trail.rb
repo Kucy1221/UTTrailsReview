@@ -3,22 +3,31 @@ require 'json'
 class Trail < ApplicationRecord
     
     
-    def self.new_lookup(category, keywords)
+    def self.new_lookup(searchparams)
         
         valid_categories = ['primaryname', 'designateduses', 'recreationarea']
         
-        if not (valid_categories.include? category)
-            raise "Invalid search category"
+        searchstring = ""
+        valid_categories.each do |category|
+            if searchparams[category].length() > 0
+                if searchstring.length() > 0
+                    searchstring += " AND "
+                end
+                searchstring += "#{category} LIKE '%#{searchparams[category].downcase().titleize()}%'"
+            end
         end
+        #if not (valid_categories.include? category)
+        #    raise "Invalid search category"
+        #end
         
         params = {}
         @api_key = Rails.application.credentials.agrc[:server_agrc_key]
         
         #AGRC stores primaryname as spaced capitalized words EG 'Devils Castle Trail'
-        params['predicate'] = "#{category} LIKE '%#{keywords.downcase().titleize()}%'"
+        params['predicate'] = searchstring
         params['apiKey'] = @api_key
         
-        api_url = "https://api.mapserv.utah.gov/api/v1/search/recreation.trails_and_pathways/primaryname, unique_id, hikedifficulty, bikedifficulty, designateduses, recreationarea"
+        api_url = "https://api.mapserv.utah.gov/api/v1/search/recreation.trails_and_pathways/primaryname, xid, hikedifficulty, bikedifficulty, designateduses, recreationarea"
     
         uri = URI(URI.encode(api_url))
         uri.query = URI.encode_www_form(params)
@@ -34,7 +43,7 @@ class Trail < ApplicationRecord
         obj['result'].each() do |trail|
             newTrail = {
               :primaryname => trail['attributes']['primaryname'],
-              :id => trail['attributes']['unique_id'],
+              :id => trail['attributes']['xid'],
               :hikedifficulty => trail['attributes']['hikedifficulty'],
               :bikedifficulty => trail['attributes']['bikedifficulty'],
               :designateduses => trail['attributes']['designateduses'],
@@ -42,7 +51,23 @@ class Trail < ApplicationRecord
             }
             trails.append(newTrail)
         end
-        return trails
+
+        #there are tons of copies of the same trails in the API database. Filter them out here
+        uniqueTrails = []
+        trails.each() do |trail|
+            unique = true
+            uniqueTrails.each() do |uniqueTrail|
+                if trail[:primaryname] == uniqueTrail[:primaryname] && trail[:hikedifficulty] == uniqueTrail[:hikedifficulty] && trail[:bikedifficulty] == uniqueTrail[:bikedifficulty] && trail[:designateduses] == uniqueTrail[:designateduses] && trail[:recreationarea] == uniqueTrail[:recreationarea]
+                    unique = false
+                    break
+                end
+            end
+            if unique
+                uniqueTrails.append(trail)
+            end
+        end
+
+        return uniqueTrails
     end
     
     class AGRCGeocoderException < Exception; end

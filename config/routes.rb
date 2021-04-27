@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'
     
+    get 'trail_search', to: 'trails#searchpage'
+    get 'find_trails', to: 'trails#lookup'
 end
