@@ -1,6 +1,6 @@
 <% if @trails.length() > 0 %>
     <% @trails.each do |trail|%>
-        <div class="card card-body m-3">
+        <div class="card m-3 p-3">
             <% if trail[:primaryname]%>
                 <strong>Trail Name: </strong> <%= trail[:primaryname]%>
             <% end %>

@@ -2,6 +2,7 @@ require 'net/http'
 require 'json'
 class Trail < ApplicationRecord
     
+    has_many :reviews
     
     def self.new_lookup(searchparams)
         
