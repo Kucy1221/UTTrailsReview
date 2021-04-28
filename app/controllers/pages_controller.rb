@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
     def home
-        redirect_to reviews_path if logged_in?
+        if logged_in?
+            redirect_to about_path
+        end
     end
     
     def about

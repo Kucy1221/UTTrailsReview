@@ -1,4 +1,26 @@
-<h1> About Utah Trails Review </h1>
-
-<%= link_to 'reviews listing', reviews_path %> |
-<%= link_to 'Home page', root_path %> 
+<div id="page-content">
+<div class="rounded-3" id="jumbotron">
+    <div class="container-fluid py-3" >
+        <div class="row justify-content-center">
+            <div class="card col-8 p-3" id="about">
+                <h1 class="text-center card-title font-weight-bold">About Utah Trail Review</h1>
+                <h6 class="card-text p-3 mr-4 ml-4" id="about-text">Utah Trail Review's primary purpose is to facilitate the dissemination of 
+                information regarding the maintenance of Utah Trails. While there are plenty of websites
+                that allow users to review difficulty, aesthetic value, and many other aspects of trails, consolidated 
+                information about the maintenance of trails is hard to come by. It is my hope that the people who
+                are on trails most frequently will be able to use this website to communicate maintenance status with
+                other outdoor enthusiasts as well as the agencies in charge of the maintenance.  
+                </h6>
+                <div class="d-flex justify-content-center">
+                <%= link_to "Sign up now!", signup_path, class: "btn btn-primary btn-lg col-4" %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<footer id="sticky-footer" class="py-4 bg-dark text-white">
+  <div class="container text-center">
+    <small>Copyright &copy; <%= link_to "Mitchell Kucy.", "http://mitchellkucy.ddns.net", class: "text-white"%> Powered by the  <%= link_to "Utah AGRC.", "https://gis.utah.gov/", class: "text-white"%> </small>
+  </div>
+</footer>

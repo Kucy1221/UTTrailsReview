@@ -1,3 +1,4 @@
+<div id="page-content">
 <% if @trails.length() > 0 %>
     <% @trails.each do |trail|%>
         <div class="card m-3 p-3">
@@ -25,5 +26,11 @@
         </div>
     <% end %>
 <% else %>
-    <h2> No Trails found with specified parameters </h2>
+    <div class="container bg-light p-2 my-3 rounded">
+        <h2 class="text-center my-4"> No Trails found with specified parameters </h2>
+        <div class="row justify-content-center">
+            <%= link_to "Return to Search", trail_search_path, class: "btn btn-primary" %>
+        </div>
+    </div>
 <% end %>
+</div>

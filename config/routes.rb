@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     get 'trail_search', to: 'trails#searchpage'
     get 'find_trails', to: 'trails#lookup'
     post 'find_trails', to: 'trails#create'
-    resources :trails, only: [:show, :index, :destroy]
+    resources :trails, only: [:show, :index]
 end

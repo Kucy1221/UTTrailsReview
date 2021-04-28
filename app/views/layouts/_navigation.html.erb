@@ -1,53 +1,44 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="navbar-brand">    <%= link_to "UTAH TRAIL REVIEW", root_path, class: "navbar-brand", id: "logo" %></div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item">
+          <%= link_to "About", about_path, class: "nav-link" %>
+        </li>           
+
+        <li class="nav-item">
+          <%= link_to "Find a Trail", trail_search_path, class: "nav-link" %>
+        </li>                
+        
         <li class="nav-item">
           <%= link_to "Reviewers", users_path, class: "nav-link" %>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Reviews
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <% if logged_in? %>
-                <a class="dropdown-item" href="#"><%= link_to "Review a Trail", new_review_path, class:"dropdown-item" %></a>
-              <% else %>
-                <a class="dropdown-item" href="#"><%= link_to "Review a Trail", signup_path, class:"dropdown-item" %></a>
-              <% end %>
-              <a class="dropdown-item" href="#"><%= link_to "View Reviews", reviews_path, class:"dropdown-item"%></a>
-              <div class="dropdown-divider"></div> 
-              <a class="dropdown-item" href="#">View a Trail</a>
-            </div>
+
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= "~(Admin)~" if current_user.admin? %> Profile
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %>
+          </div>         
+          <li class="nav-item">
+            <%= link_to 'Log out', logout_path, class: 'nav-link', method: :delete %>
           </li>
-          <% if logged_in? %>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= "~(Admin)~" if current_user.admin? %> Profile
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to "View your profile", user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %>
-            </div>         
-            <li class="nav-item">
-              <%= link_to 'Log out', logout_path, class: 'nav-link', method: :delete %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to 'Log in', login_path, class: 'nav-link' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Sign Up', signup_path , class: 'nav-link' %>
-            </li>            
-          <% end %>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Log in', login_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign Up', signup_path , class: 'nav-link' %>
+          </li>            
+        <% end %>
+      </ul>
     </div>
   </div>
+  <div class="navbar-brand">    <%= link_to "UTAH TRAIL REVIEW", root_path, class: "navbar-brand", id: "logo" %></div>
 </nav>

@@ -16,13 +16,29 @@ class ReviewsController < ApplicationController
     end
     
     def create
-        byebug
         @review = Review.new(review_params())
         @review.user = current_user
+        
         if @review.save()
             flash[:notice] = "Review Posted Successfully."
+
+            trail = Trail.find(@review.trail_id)
+            revs = trail.reviews
+            totalRating = 0
+            revs.each do |rev|
+                totalRating += rev.rating
+            end
+            avgRating = totalRating.to_d / trail.reviews.count.to_d
+            trail.rating = avgRating
+            if trail.save()
+                flash[:notice] = "Trail Rating Adjusted"
+            else
+                flash[:alert] = "Trail Rating out-of-date"
+            end
+
             redirect_to review_path(@review)
         else
+            @trail = @review.trail_id
             render 'new'
         end
     end

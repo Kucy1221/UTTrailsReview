@@ -18,7 +18,7 @@ class TrailsController < ApplicationController
             @trail = Trail.new(trail_params())
             @trail.rating = 0
             if @trail.save()
-                flash[:notice] = "You are the first to review " + @trail.primaryname + ", A profile for this trail has been generated."
+                #flash[:notice] = "You are the first to view " + @trail.primaryname + ", A profile for this trail has been generated."
             else
                 flash[:alert] = "The profile for the trail was not successfully generated."
             end
@@ -27,7 +27,17 @@ class TrailsController < ApplicationController
     end
 
     def show
-        @trail = Trail.find(params[:id])    
+        @trail = Trail.find(params[:id])
+        revs = @trail.reviews
+        totalRating = 0
+        revs.each do |rev|
+            totalRating += rev.rating
+        end
+        avgRating = totalRating.to_d / @trail.reviews.count.to_d
+        @trail.rating = avgRating
+        @trail.save
+
+        @reviews = @trail.reviews.paginate(page: params[:page], per_page: 5)
     end
 
 private

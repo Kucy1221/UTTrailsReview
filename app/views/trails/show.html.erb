@@ -20,9 +20,10 @@
                                 <% i += 1 %>
                             <% end %>
                         </div>
-                        <p><small>Based on <%= @trail.reviews.count %> reviews. </small></p>                        
+                        <p><small><%=  "(" + @trail.rating.to_s + " Based on " + pluralize(@trail.reviews.count, "Review") +".)" %></small></p>                       
                     </div>
                     <div class="card-body">
+                        <h5 class="text-center">Info</h5> 
                         <div class="row">
                             <% if @trail[:primaryname]%>
                                 <strong>Trail Name: </strong> <%= @trail[:primaryname]%>
@@ -53,8 +54,17 @@
                 <div class = "container row p-3 justify-content-left">
                     <%= link_to 'Review this trail', new_review_path(trail: @trail), class: "m-3 btn btn-success" %>
                     <%= link_to 'Return to trail search', trail_search_path, class: "m-3 btn btn-primary" %>
-                </div>
+                </div>              
             </div>
         </div>
     </div>
+    <div class="apple_pagination">
+        <%= will_paginate @reviews, :container => false %>
+    </div>
+
+    <%= render 'reviews/review', obj: @reviews %>
+
+    <div class="apple_pagination mb-5 mt-4">
+        <%= will_paginate @reviews, :container => false %>
+    </div>    
 </div>

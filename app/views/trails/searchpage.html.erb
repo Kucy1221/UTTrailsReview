@@ -1,40 +1,56 @@
-<div class='m-3'>
+<div id="page-content">
+<div class='m-3 text-center'>
     <h1>Trails Search</h1>
 </div>
+<div class="container">
+<div class="row justify-content-center">
 
-
-<div class='m-3'>
-    <h3>Search for trails by name:</h3>
+<div class="m-3 col-10 bg-dark rounded">
     <%= form_tag find_trails_path, method: :get do %>
-        <div class = "form-group row">
-            <div class="col-sm-9 pr-0">
+        <div class="my-4 form-group row justify-content-center">
+            <div class="col-sm-11 pr-0">
                 <%= text_field_tag :primaryname, params[:primaryname], placeholder: "name of trail", autofocus: true, class: "form-control form-control-lg"%>
             </div>
         </div>
 
-
-        <h3>Search for trails by area:</h3>
-        <div class = "form-group row">
-            <div class="col-sm-9 pr-0">
+        <div class="my-4 form-group row justify-content-center">
+            <div class="col-sm-11 pr-0">
                 <%= text_field_tag :recreationarea, params[:recreationarea], placeholder: "recreation area ex. 'Zion'", autofocus: true, class: "form-control form-control-lg"%>
             </div>
         </div>
 
+        <label for="designateduses" class="text-white text-center mb-0 pb-0"> Type of Trail: </label>
 
-        <h3>Search for trails by type:</h3>
-        <div class = "form-group row">
-            <div class="col-sm-9 pr-0">
-                <%= text_field_tag :designateduses, params[:designateduses], placeholder: "Trail type ex. 'Bike'", autofocus: true, class: "form-control form-control-lg"%>
+        <div class="mb-4 mt-2 form-group row justify-content-center">
+            <div class="mb-3 row">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <div class="btn rounded btn-secondary m-2">
+                        All
+                        <%= radio_button_tag :designateduses, "", checked = true, class: "form-control form-control-lg" %>          
+                    </div>
+                    <div class="btn rounded btn-secondary m-2">
+                        Pedestrian
+                        <%= radio_button_tag :designateduses, "Pedestrian", checked = false, class: "form-control form-control-lg" %>          
+                    </div>
+                    <div class="btn rounded btn-secondary m-2">
+                        Bike
+                        <%= radio_button_tag :designateduses, "Bike", checked = false, class: "form-control form-control-lg" %>          
+                    </div>
+                    <div class="btn rounded btn-secondary m-2">
+                        Multiuse
+                        <%= radio_button_tag :designateduses, "Multiuse", checked = false, class: "form-control form-control-lg" %>                      
+                    </div>
+                </div>
             </div>
-            <!-- turn this into a radio button or checkbox field -->
         </div>
 
-        <div class="form-group row">
-            <div class="col-sm-9 pr-0">
-                <%= button_tag type: :submit, class: "btn btn-primary" do%>
-                <%= 'Search!' %>
-                <% end %>
-            </div>
+        <div class="my-4 form-group row justify-content-center">
+            <%= button_tag type: :submit, class: "btn btn-primary" do%>
+            <%= 'Search!' %>
+            <% end %>
         </div>
     <% end %>
+</div>
+</div>
+</div>
 </div>
