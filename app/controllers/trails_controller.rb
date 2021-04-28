@@ -12,18 +12,29 @@ class TrailsController < ApplicationController
         end
     end
 
-    #[:show, :index, :new, :create, :destroy]
-
-    def show 
+    def create
+        @trail =  Trail.find_by(xid: params[:trail][:xid])
+        if not @trail
+            @trail = Trail.new(trail_params())
+            @trail.rating = 0
+            if @trail.save()
+                flash[:notice] = "You are the first to review " + @trail.primaryname + ", A profile for this trail has been generated."
+            else
+                flash[:alert] = "The profile for the trail was not successfully generated."
+            end
+        end
+        redirect_to trail_path(@trail.id)
     end
 
-    def index
+    def show
+        @trail = Trail.find(params[:id])    
     end
 
-    def create 
-    end
-    
-    def destroy
-    end
-    
+private
+
+def trail_params
+    params.require(:trail).permit(:primaryname, :xid, :hikedifficulty, :bikedifficulty, :designateduses, :recreationarea)
+end
+
+
 end

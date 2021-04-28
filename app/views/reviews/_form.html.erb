@@ -39,7 +39,8 @@
               <%= f.label :rating_5, "Great!", class: " text-white p-2"%>
             </div>
           </div>
-        </div>        
+        </div> 
+        <%= f.hidden_field(:trail_id, value: @trail) %>       
         <div class="row mb-3 justify-content-center">
           <%= f.submit class: "btn btn-outline-light btn-lg col-3" %>
         </div>

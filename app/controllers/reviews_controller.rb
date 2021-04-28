@@ -12,9 +12,11 @@ class ReviewsController < ApplicationController
     
     def new
         @review = Review.new()
+        @trail = params[:trail]
     end
     
     def create
+        byebug
         @review = Review.new(review_params())
         @review.user = current_user
         if @review.save()
@@ -31,24 +33,13 @@ class ReviewsController < ApplicationController
     end
     
     private 
-    
-    def set_review
-        @review = Review.find(params[:id])
-    end
-    
-    def review_params
-        params.require(:review).permit(:title, :body, :rating)
-    end
-end
-
-  private
 
   def set_review
     @review = Review.find(params[:id])
   end
 
   def review_params
-    params.require(:review).permit(:title, :body, :rating)
+    params.require(:review).permit(:title, :body, :rating, :trail_id)
   end
 
   def require_same_user
@@ -57,3 +48,5 @@ end
           redirect_to @review
       end
   end
+
+end

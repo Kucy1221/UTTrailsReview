@@ -44,7 +44,7 @@ class Trail < ApplicationRecord
         obj['result'].each() do |trail|
             newTrail = {
               :primaryname => trail['attributes']['primaryname'],
-              :id => trail['attributes']['xid'],
+              :xid => trail['attributes']['xid'],
               :hikedifficulty => trail['attributes']['hikedifficulty'],
               :bikedifficulty => trail['attributes']['bikedifficulty'],
               :designateduses => trail['attributes']['designateduses'],

@@ -4,11 +4,11 @@
             <div class="col-8">
                 <div class="card shadow" style="width: 100%;">
                     <div class="card-header text-center">
-                        <h2><%= @review.title %></h2>
+                        <h2><%= @trail.primaryname %></h2>
                         <div class="row justify-content-center">
                             <% i = 1 %>
                             <% while i < 6%>
-                                <% if i <= @review.rating %>
+                                <% if i <= @trail.rating %>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                     </svg>
@@ -20,21 +20,41 @@
                                 <% i += 1 %>
                             <% end %>
                         </div>
-                        <small class="text-muted"> Created <%= time_ago_in_words(@review.created_at) %> ago by <%= @review.user.username %></small>
-                        <%= link_to gravatar_for(@review.user, size: 40), user_path(@review.user.id)%>
+                        <p><small>Based on <%= @trail.reviews.count %> reviews. </small></p>                        
                     </div>
                     <div class="card-body">
-                        <p class="card-text"><%= simple_format(@review.body) %></p>
+                        <div class="row">
+                            <% if @trail[:primaryname]%>
+                                <strong>Trail Name: </strong> <%= @trail[:primaryname]%>
+                            <% end %>
+                        </div>
+                        <div class="row">
+                            <% if @trail[:hikedifficulty].length > 0%>
+                                <strong>Hike Difficulty: </strong> <%= @trail[:hikedifficulty]%>
+                            <% end %>
+                        </div>
+                        <div class="row">
+                            <% if @trail[:bikedifficulty].length > 0%>
+                                <strong>Bike Difficulty: </strong> <%= @trail[:bikedifficulty]%>
+                            <% end %>
+                        </div>
+                        <div class="row">
+                            <% if @trail[:designateduses].length > 0%>
+                                <strong>Type: </strong> <%= @trail[:designateduses]%>
+                            <% end %>
+                        </div>
+                        <div class="row">
+                            <% if @trail[:recreationarea].length > 0%>
+                                <strong>Location: </strong> <%= @trail[:recreationarea]%>
+                            <% end %>
+                        </div>
                      </div>
                 </div>
                 <div class = "container row p-3 justify-content-left">
-                    <%= link_to 'Return to Reviews', reviews_path, class: "m-3 btn btn-primary" %>
-                    <% if logged_in? && (@review.user.id == current_user.id || current_user.admin?) %>
-                        <%= link_to "Delete", review_path(@review), class:"m-3 btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
-                    <% end %>
+                    <%= link_to 'Review this trail', new_review_path(trail: @trail), class: "m-3 btn btn-success" %>
+                    <%= link_to 'Return to trail search', trail_search_path, class: "m-3 btn btn-primary" %>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

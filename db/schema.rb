@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_27_203708) do
+ActiveRecord::Schema.define(version: 2021_04_27_222807) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "title"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2021_04_27_203708) do
   end
 
   create_table "trails", force: :cascade do |t|
-    t.string "name"
     t.decimal "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -32,7 +31,9 @@ ActiveRecord::Schema.define(version: 2021_04_27_203708) do
     t.string "bikedifficulty"
     t.string "designateduses"
     t.string "recreationarea"
+    t.string "primaryname"
   end
+
 
   create_table "users", force: :cascade do |t|
     t.string "username"
