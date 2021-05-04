@@ -5,7 +5,7 @@ set :application, "UTTrailsReview"
 set :repo_url, "https://github.com/Kucy1221/UTTrailsReview.git"
 
 # Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, 'deploy'
 
 # Default deploy_to directory is /var/www/my_app_name
 # deploying to 'deploy' user's home directory
