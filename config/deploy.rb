@@ -2,7 +2,7 @@
 lock "~> 3.16.0"
 
 set :application, "UTTrailsReview"
-set :repo_url, "git@github.com:Kucy1221/UTTrailsReview.git"
+set :repo_url, "https://github.com/Kucy1221/UTTrailsReview.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
