@@ -11,9 +11,11 @@
                 are on trails most frequently will be able to use this website to communicate maintenance status with
                 other outdoor enthusiasts as well as the agencies in charge of the maintenance.  
                 </h6>
-                <div class="d-flex justify-content-center">
-                <%= link_to "Sign up now!", signup_path, class: "btn btn-primary btn-lg col-4" %>
-                </div>
+                <% if !logged_in?%>
+                  <div class="d-flex justify-content-center">
+                    <%= link_to "Sign up now!", signup_path, class: "btn btn-primary btn-lg col-4" %>
+                  </div>
+                <% end%>
             </div>
         </div>
     </div>
