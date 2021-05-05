@@ -48,7 +48,7 @@
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-server "ec2-18-219-73-86.us-east-2.compute.amazonaws.com",
+server "3.20.171.91",
   user: "deploy",
   roles: %w{app db web},
   ssh_options: {
